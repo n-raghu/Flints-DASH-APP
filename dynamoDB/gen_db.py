@@ -79,7 +79,7 @@ def gen_usr(dep, tbl, sal_r=sal_range):
 
 
 # Create user on dynamoDB
-def create_usr(db_items, client):
+def create_users(db_items, client):
     push_items: dict = {}
     for col_, items_ in db_items.items():
         collection_items: list = []
@@ -106,8 +106,7 @@ def create_100_set(tname, client_, deps=departments):
         usr_items.append(gen_usr(choice(deps), tname))
     chunks = math.ceil(len(usr_items)/csize)
     for n in range(chunks):
-        create_usr({tname: usr_items[n*csize:(n+1)*csize]}, client_)
-        print(n)
+        create_users({tname: usr_items[n*csize:(n+1)*csize]}, client_)
 
 
 def tester(client_ = amazonclient):
