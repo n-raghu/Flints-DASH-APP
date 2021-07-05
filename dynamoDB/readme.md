@@ -40,5 +40,5 @@ File to generate random data and push to dynamoDB.
 #### create_116_set
 **Purpose**: Orchestrate the entire process and test with default values
 **Accepts**: 1 argument
-1. _client_ -> Activated boto3 client
+1. _client__ -> Activated boto3 client
 **Returns**: None
