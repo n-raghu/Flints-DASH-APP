@@ -1,0 +1,3 @@
+pyyaml
+bson
+boto3
