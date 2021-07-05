@@ -1,1 +1,2 @@
-# Code/Snippets for various components offered by Amazon Web Services
+# aws-nuggets
+**Code/Snippets for various services provided by Amazon Web Services**
