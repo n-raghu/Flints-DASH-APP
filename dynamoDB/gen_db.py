@@ -98,8 +98,8 @@ def create_users(db_items, client):
     )
 
 
-# Create 100 test sets
-def create_100_set(tname, client_, deps=departments):
+# Create 116 test sets
+def create_116_set(tname, client_, deps=departments):
     usr_items = []
     csize = 20
     for _ii in range(116):
@@ -116,7 +116,7 @@ def tester(client_ = amazonclient):
     except Exception:
         print('Table seems exists!!!')
 
-    create_100_set(tb_, client_,)
+    create_116_set(tb_, client_,)
 
 
 if __name__ == '__main__':

@@ -11,7 +11,7 @@ File to generate random data and push to dynamoDB.
 **Purpose**: Create a table on DynamoDB
 **Accepts**: 2 arguments
 1. _tbl_ -> name of table to be created
-2. _client_ -> active amazon client session to connect and create table
+2. _client__ -> active amazon client session to connect and create table
 **Returns**: None
 
 #### gen_usr
@@ -33,7 +33,7 @@ File to generate random data and push to dynamoDB.
 **Purpose**: Generate chunks of users using `gen_user`, each chunk will have 20 users. Now push each chunk to DynamoDB using `create_users`
 **Accepts**: 3 arguments
 1. _tname_ -> Table Name
-2. _client_ -> Activated boto3 client
+2. _client__ -> Activated boto3 client
 3. _deps_ -> List of departments
 **Returns**: None
 
