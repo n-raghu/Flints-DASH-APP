@@ -7,7 +7,7 @@ from datetime import datetime as dtm
 from bson.objectid import ObjectId
 from boto3.dynamodb.conditions import Key
 
-from connections import amazonclient, departments
+from connections import dynamo_client, departments
 
 sal_range = list(range(100, 100000, 100))
 shuffle(sal_range)
@@ -93,7 +93,7 @@ def create_116_set(tname, client_, deps=departments):
         create_users({tname: usr_items[n*csize:(n+1)*csize]}, client_)
 
 
-def tester(client_ = amazonclient):
+def tester(client_ = dynamo_client):
     tb_ = 'usrsalary'
     try:
         create_tab(tb_, client_)

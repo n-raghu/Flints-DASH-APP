@@ -1,3 +1,4 @@
+from connections import amazonclient, 
 def query_table(tbl, rsc_):
     collection = rsc_.Table(tbl)
     response = collection.query(

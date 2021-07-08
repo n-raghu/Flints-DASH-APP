@@ -12,7 +12,7 @@ aws_access = cfg['aws_access']
 departments: list = ['dev', 'test', 'srt']
 
 # Create Client for Session
-amazonclient = botoclient(
+dynamo_client = botoclient(
     'dynamodb',
     aws_access_key_id=aws_key,
     aws_secret_access_key=aws_access,
@@ -20,7 +20,7 @@ amazonclient = botoclient(
 )
 
 # Create Amazon resource
-tab_rsc = botorsc(
+dynamo_rsc = botorsc(
     'dynamodb',
     aws_access_key_id=aws_key,
     aws_secret_access_key=aws_access,
