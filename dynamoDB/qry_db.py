@@ -1,4 +1,4 @@
-from boto3.dynamodb.conditions import Key
+from boto3.dynamodb.conditions import Key, Attr
 
 from essentials import dynamo_client, dynamo_rsc, departments
 
@@ -40,10 +40,29 @@ def simple_get_item(dep: str, tbl: str='usrsalary', rsc_=dynamo_rsc):
 def simple_query_tab(dep: str, tbl: str='usrsalary', rsc_=dynamo_rsc):
     collection = rsc_.Table(tbl)
     response = collection.query(
-        KeyConditionExpression=Key('dep').eq('dev'))
+        KeyConditionExpression=Key('dep').eq(f'{dep}'))
+    return response['Items']
+
+
+# Scan a collection
+def simple_scan_tab(sal: int, tbl: str='usrsalary', rsc_=dynamo_rsc):
+    collection = rsc_.Table(tbl)
+    response = collection.scan(
+        FilterExpression=Attr('salary').lte(sal)
+    )
+    return response['Items']
+
+# Multiple scan conditions
+def scan_tab(dep, sal1, sal2, tbl: str='usrsalary', rsc_=dynamo_rsc):
+    collection = rsc_.Table(tbl)
+    response = collection.scan(
+        FilterExpression=Attr('salary').gte(sal1) &
+        Attr('salary').lte(sal2) &
+        Attr('dep').eq('dev')
+    )
     return response['Items']
 
 
 if __name__ == '__main__':
-    item = simple_query_tab('dev')
+    item = scan_tab('dev', 3600, 6900)
     print(item)
