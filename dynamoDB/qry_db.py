@@ -6,9 +6,3 @@ def query_table(tbl, rsc_):
     return response
 
 
-tab_rsc = botorsc(
-    'dynamodb',
-    aws_access_key_id=aws_key,
-    aws_secret_access_key=aws_access,
-    region_name=aws_region
-)

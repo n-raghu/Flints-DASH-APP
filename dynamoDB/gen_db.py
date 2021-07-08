@@ -4,29 +4,13 @@ from uuid import uuid1 as UU1
 from random import choice, shuffle
 from datetime import datetime as dtm
 
-import yaml
 from bson.objectid import ObjectId
-from boto3 import resource as botorsc
-from boto3 import client as botoclient
 from boto3.dynamodb.conditions import Key
 
-with open('../credentials.yml', 'r') as cfile:
-    cfg = yaml.safe_load(cfile)
+from connections import amazonclient, departments
 
-aws_region = cfg['aws_region']
-aws_key = cfg['aws_key']
-aws_access = cfg['aws_access']
-departments: list = ['dev', 'test', 'srt']
 sal_range = list(range(100, 100000, 100))
 shuffle(sal_range)
-
-# Create Client for Session
-amazonclient = botoclient(
-    'dynamodb',
-    aws_access_key_id=aws_key,
-    aws_secret_access_key=aws_access,
-    region_name=aws_region
-)
 
 
 # Create Table
