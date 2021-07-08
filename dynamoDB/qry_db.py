@@ -43,7 +43,6 @@ def simple_query_tab(dep: str, tbl: str='usrsalary', rsc_=dynamo_rsc):
         KeyConditionExpression=Key('dep').eq(f'{dep}'))
     return response['Items']
 
-
 # Scan a collection
 def simple_scan_tab(sal: int, tbl: str='usrsalary', rsc_=dynamo_rsc):
     collection = rsc_.Table(tbl)
