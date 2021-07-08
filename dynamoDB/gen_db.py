@@ -5,9 +5,8 @@ from random import choice, shuffle
 from datetime import datetime as dtm
 
 from bson.objectid import ObjectId
-from boto3.dynamodb.conditions import Key
 
-from connections import dynamo_client, departments
+from essentials import dynamo_client, departments
 
 sal_range = list(range(100, 100000, 100))
 shuffle(sal_range)
