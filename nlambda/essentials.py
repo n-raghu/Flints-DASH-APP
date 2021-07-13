@@ -28,7 +28,7 @@ dynamo_rsc = botorsc(
 )
 
 # Create Client for S3
-dynamo_client = botoclient(
+s3_client = botoclient(
     's3',
     aws_access_key_id=aws_key,
     aws_secret_access_key=aws_access,
@@ -36,7 +36,7 @@ dynamo_client = botoclient(
 )
 
 # Create Resource for S3
-dynamo_rsc = botorsc(
+s3_rsc = botorsc(
     's3',
     aws_access_key_id=aws_key,
     aws_secret_access_key=aws_access,
