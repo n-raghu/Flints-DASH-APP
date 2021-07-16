@@ -11,8 +11,6 @@ ZIP64_EOCD_RECORD_SIZE = 56
 ZIP64_EOCD_LOCATOR_SIZE = 20
 
 MAX_STANDARD_ZIP_SIZE = 4_294_967_295
-bucket = 'boto-ops-s3-369'
-key = 'datum-lite.zip'
 
 
 def lambda_handler(bucket, key):
@@ -44,7 +42,6 @@ def get_file_size(bucket, key):
 
 def fetch(bucket, key, start, length):
     end = start + length - 1
-    print('Start', start, 'End', end)
     response = s3.get_object(Bucket=bucket, Key=key, Range="bytes=%d-%d" % (start, end))
     return response['Body'].read()
 

@@ -1,12 +1,18 @@
+import io
 import sys
+#from io import BytesIO
+from zipfile import ZipFile
 
+from smart_open import open as sopen
 from bson.objectid import ObjectId
 
-from zipops import get_zip_file
 from essentials import s3_client, s3_rsc
 
 BUCKET = f'boto-ops-s3-{str(ObjectId())}'
-csv_file = 'datum/dim_users.csv'
+BUCKET = 'boto-ops-s3-369'
+FZIP = 'datum-lite.zip'
+file_ = 'datum/data8216.csv'
+file_lite = 'datum/dimYear8277.csv'
 
 # List S3 Buckets
 def get_s3_buckets(client=s3_client):
@@ -35,11 +41,21 @@ def push_object(bfile, bkt=BUCKET, client=s3_client):
         Key=bfile
     )
 
-# List objects from S3
-
-# Read S3 objects
-files = get_zip_file('boto-ops-s3-369', 'datum.zip')
-
 # Delete S3 bucket
 def drop_bucket(bkt=BUCKET, client=s3_client):
     return bkt
+
+# Stream Zip
+def zip_stream(zip_f='datum-lite.zip', bkt=BUCKET, rsc=s3_rsc):
+    obj = rsc.Object(
+        bucket_name=bkt,
+        key=zip_f
+    )
+
+    return obj.get()['Body'].read()
+
+    return ZipFile(io.BytesIO(obj.get()['Body'].read()))
+
+def files_in_zip():
+    zippo = zip_stream()
+    return [csv.filename for csv in zippo.filelist if '.csv' in csv.filename]
