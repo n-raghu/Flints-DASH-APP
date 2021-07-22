@@ -31,15 +31,8 @@ def handler(event, context):
 
 
 def write_to_dynamo(rows):
-    try:
-        table = dynamodb.Table(tableName)
-    except:
-        print("Error loading DynamoDB table. Check if table was created correctly and environment variable.")
+    table = dynamodb.Table(tableName)
 
-    try:
-        with table.batch_writer() as batch:
-            for i in range(len(rows)):
-                batch.put_item(Item=rows[i])
-
-    except:
-        print("Error executing batch_writer")
+    with table.batch_writer() as batch:
+        for i in range(len(rows)):
+            batch.put_item(Item=rows[i])
