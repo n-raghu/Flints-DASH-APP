@@ -2,3 +2,4 @@ credentials.yml
 **/__pycache__
 **/*.out
 s3-lambda/datum5.csv
+s3-lambda/datum/
