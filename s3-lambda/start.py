@@ -1,6 +1,6 @@
 import sys
 from zipfile import ZipFile
-from io import BytesIO, TextIOWrapper
+from iogen import StrIOGenerator
 
 from smart_open import smart_open
 from bson.objectid import ObjectId
@@ -46,6 +46,17 @@ def zip_stream(zip_f='datum-lite.zip', bkt=BUCKET, client=s3_client):
     s3_uri = f's3://{bkt}/{zip_f}'
     with smart_open(s3_uri, 'rb') as sfile:
         zippo = ZipFile(sfile)
-        zip_files = zippo.namelist()
+        with zippo.open('data8216', 'r') as dat:
+            csv_dat = StrIOGenerator(
+                binary_chunk=dat
+            )
+        print(csv_dat)
 
-    return zip_files
+# Stream Zip to get contents
+def gen_stream(zip_f='datum-lite.zip', bkt=BUCKET, client=s3_client):
+    s3_uri = f's3://{bkt}/{zip_f}'
+    with smart_open(s3_uri, 'rb') as sfile:
+        zippo = ZipFile(sfile)
+        with zippo.open('data8216', 'r') as dat:
+            for row in csv.DictReader(dat, skipinitialspace=True, delimiter='|'):
+                yield {k:v for k,v in row.item()}
