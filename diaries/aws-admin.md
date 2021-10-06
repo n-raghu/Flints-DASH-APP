@@ -1,3 +1,24 @@
+# AWS CIS
+### Avoid use of `root` account
+### Password
+#### Enable MFA
+#### Unused credentials are disabled after 90 days
+#### Access keys are rotated every 90 days
+#### One Uppercase, One Lowercase, One symbol, One Number & min 14 char len password
+#### Prevent password reuse of last 24
+#### Password expires in 90 days
+#### No root access key exists
+#### Hardware MFA for root
+### IAM policies are attached only to groups or roles
+### IAM policies that allow full "*:*" administrative privileges are not created
+### CloudTrial logs for S3 and regions are enabled
+### Rotation of KMS Keys
+### Alarm for Unauthorized API calls
+### Alarm for console login without MFA
+### Alarm for root login
+### Alarm for changes in NACL(Network Access Control Lists), Secuity Groups, Route Tables, VPC
+### No security groups allow ingress from 0.0.0.0/0 to port 3389(RDP) and 22(SSH)
+
 # Amazon Control Tower
 Automate the setup of your multi-account AWS environment with just a few clicks. The setup employs blueprints, which capture AWS best practices for configuring AWS security and management services to govern your environment and see Dashboards
 
