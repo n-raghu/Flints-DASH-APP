@@ -1,0 +1,4 @@
+bson
+boto3
+pyyaml
+uvloop
