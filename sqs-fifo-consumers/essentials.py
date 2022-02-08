@@ -1,10 +1,9 @@
 import boto3
+import yaml
 
-creds = {
-    "access_key": "",
-    "secret_key": "",
-    "sqs_uri": ''
-}
+with open('cfg.yml', 'r') as yfile:
+    creds = yaml.safe_load(yfile)
+
 
 sample_dict = {
         'opportunity_name': "SuperVipre's Opp",
@@ -59,8 +58,8 @@ def sqs_url(creds=creds):
     return creds['sqs_uri']
 
 
-def msg_grp():
-    return 'raghu_3-feb-22'
+def customer_msg_grps(n):
+    return [f'gid-customer-{x}' for x in range(n)]
 
 
 def set_queue_props(**kwargs):
