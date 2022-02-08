@@ -1,7 +1,7 @@
 # Scripts to publish and consume messages from SQS FIFO
 
-- Created a publisher script which creates and pushes messages to SQS.
-- Created two consumers to compare how `ThreadPoolExecutor` and `EventLoop` perform. For large sample EventLoop was little better than ThreadPoolExecutor.
+- Created a publisher script which creates and pushes messages to SQS. (Refer pub.py)
+- Created consumers to compare how `ThreadPoolExecutor` and `EventLoop` perform. For large sample EventLoop was little better than ThreadPoolExecutor.
 
 Conducted two samples tests:
 
@@ -24,3 +24,10 @@ Conducted two samples tests:
 
 For low number of messages any approach is working fine.
 For FIFO queues, it is suggested to have different MessageGroupId which helps us to spawn concurrent processes to consumer messages faster and in time.
+
+**1M - 10% of actual target with multiple message groups**
+- ThreadPoolExecutor:
+> 89636.1 seconds which is equivalent 2.8 hours
+> Estimation for 10M - 30 hours
+
+*Note: The more message groups you have, the less time it takes to process/consume*
